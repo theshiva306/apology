@@ -27,7 +27,7 @@ export default function PasswordGate({ onUnlock }) {
       e.preventDefault();
       if (normalize(value) === CORRECT_PASSWORD) {
         try {
-          localStorage.setItem(STORAGE_KEY, "1");
+          sessionStorage.setItem(STORAGE_KEY, "1");
         } catch {}
         onUnlock();
         return;
@@ -125,7 +125,7 @@ export default function PasswordGate({ onUnlock }) {
 
 export function isUnlocked() {
   try {
-    return localStorage.getItem(STORAGE_KEY) === "1";
+    return sessionStorage.getItem(STORAGE_KEY) === "1";
   } catch {
     return false;
   }
