@@ -1,0 +1,11 @@
+{
+  "rules": {
+    "chat": {
+      ".read": "auth != null",
+      ".write": "auth != null",
+      "messages": {
+        ".validate": "newData.isArray()"
+      }
+    }
+  }
+}
