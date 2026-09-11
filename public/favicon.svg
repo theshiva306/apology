@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <rect width="100" height="100" fill="#000"/>
+  <!-- Deathly Hallows — Harry Potter reference -->
+  <g stroke="rgba(255,255,255,0.92)" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Triangle -->
+    <path d="M50 18 L20 82 L80 82 Z" />
+    <!-- Circle (Resurrection Stone) -->
+    <circle cx="50" cy="52" r="14" />
+    <!-- Line (Elder Wand) -->
+    <path d="M50 18 L50 82" />
+  </g>
+  <!-- Subtle lightning scar glow -->
+  <path d="M48 44 L52 52 L48 56 L54 66" stroke="rgba(255,255,255,0.18)" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
