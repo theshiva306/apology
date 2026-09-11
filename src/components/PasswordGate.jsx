@@ -8,17 +8,17 @@ function normalize(v) {
 }
 
 // Hint tiers based on how many wrong attempts have been made.
+// No hint is shown until the user has failed twice.
 function getHint(attempts) {
   if (attempts >= 4) return "_ _ _ _ _ loves _ _ _ _ _";
-  if (attempts >= 2) return "not your nicknames this time";
-  return "nicknames";
+  if (attempts >= 2) return "Hint: nicknames";
+  return null;
 }
 
 export default function PasswordGate({ onUnlock }) {
   const [value, setValue] = useState("");
   const [attempts, setAttempts] = useState(0);
   const [showWrong, setShowWrong] = useState(false);
-  const [showHint, setShowHint] = useState(false);
   const [shaking, setShaking] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
@@ -35,7 +35,6 @@ export default function PasswordGate({ onUnlock }) {
 
       setAttempts((a) => a + 1);
       setShowWrong(true);
-      setShowHint(false);
       setShaking(true);
       setValue("");
       window.setTimeout(() => setShaking(false), 420);
@@ -46,10 +45,6 @@ export default function PasswordGate({ onUnlock }) {
   const handleChange = useCallback((e) => {
     setValue(e.target.value);
     setShowWrong(false);
-  }, []);
-
-  const toggleHint = useCallback(() => {
-    setShowHint((h) => !h);
   }, []);
 
   const toggleShowPassword = useCallback(() => {
@@ -67,12 +62,8 @@ export default function PasswordGate({ onUnlock }) {
 
         <h1 className="gate-title">Enter password to continue</h1>
 
-        <div className="gate-hint-row">
-          <button type="button" className="gate-hint-btn" onClick={toggleHint}>
-            {showHint ? "Hide hint" : "Need a hint?"}
-          </button>
-
-          {showHint && <p className="gate-hint-text">{getHint(attempts)}</p>}
+        <div className="gate-hint-row" aria-live="polite">
+          {getHint(attempts) && <p className="gate-hint-text">{getHint(attempts)}</p>}
         </div>
 
         <div className="gate-input-wrap">
