@@ -5,6 +5,7 @@ import HeartIntro from "./components/HeartIntro.jsx";
 import ApologyEngine from "./components/ApologyEngine.jsx";
 import FinalScreen from "./components/FinalScreen.jsx";
 import SideNav from "./components/SideNav.jsx";
+import PasswordGate, { isUnlocked } from "./components/PasswordGate.jsx";
 import FullLetter from "./pages/FullLetter.jsx";
 import NewMsgs from "./pages/NewMsgs.jsx";
 import Home from "./pages/Home.jsx";
@@ -63,6 +64,16 @@ function Experience() {
 }
 
 export default function App() {
+  const [unlocked, setUnlocked] = useState(() => isUnlocked());
+
+  const handleUnlock = useCallback(() => {
+    setUnlocked(true);
+  }, []);
+
+  if (!unlocked) {
+    return <PasswordGate onUnlock={handleUnlock} />;
+  }
+
   return (
     <BrowserRouter basename={import.meta.env.BASE_URL}>
       <Routes>
