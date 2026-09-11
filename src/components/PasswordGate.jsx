@@ -8,11 +8,11 @@ function normalize(v) {
 }
 
 // Hint tiers based on how many wrong attempts have been made.
-// No hint is shown until the user has failed twice.
+// Upgrades to a more specific hint every 2 failed attempts.
 function getHint(attempts) {
   if (attempts >= 4) return "_ _ _ _ _ loves _ _ _ _ _";
-  if (attempts >= 2) return "Hint: nicknames";
-  return null;
+  if (attempts >= 2) return "Not your nicknames this time";
+  return "Hint: nicknames";
 }
 
 export default function PasswordGate({ onUnlock }) {
